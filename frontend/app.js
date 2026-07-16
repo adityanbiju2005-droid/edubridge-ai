@@ -7,7 +7,7 @@
 // In development  → points to local FastAPI server
 // In production   → points to your Render backend URL
 // Update PROD_API_URL below after deploying to Render
-const PROD_API_URL = 'https://edubridge-ai.onrender.com';
+const PROD_API_URL = 'https://edubridge-ai-rn70.onrender.com';
 const API_BASE = (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')
   ? 'http://127.0.0.1:8000'
   : PROD_API_URL;
