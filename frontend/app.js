@@ -3,7 +3,14 @@
 //  Fetch API, pipeline animation, tabs, copy/download
 // ============================================================
 
-const API_BASE = 'http://127.0.0.1:8000';
+// ── API Base URL ─────────────────────────────────────────────
+// In development  → points to local FastAPI server
+// In production   → points to your Render backend URL
+// Update PROD_API_URL below after deploying to Render
+const PROD_API_URL = 'https://edubridge-ai.onrender.com';
+const API_BASE = (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')
+  ? 'http://127.0.0.1:8000'
+  : PROD_API_URL;
 
 // ── DOM References ──────────────────────────────────────────
 const form            = document.getElementById('input-form');

@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: edubridge-ai
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false   # You will set this manually in Render dashboard
