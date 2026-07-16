@@ -43,36 +43,62 @@ const resultPanels = {
 // ── State ───────────────────────────────────────────────────
 let isProcessing = false;
 
-// ── Init: Load language & region options ────────────────────
-async function loadOptions() {
-  try {
-    const [langRes, regionRes] = await Promise.all([
-      fetch(`${API_BASE}/api/languages`),
-      fetch(`${API_BASE}/api/regions`),
-    ]);
+// ── Static Options Data (no backend dependency) ─────────────
+// Hardcoded so dropdowns populate instantly even when backend is cold-starting
+const LANGUAGES = [
+  { value: 'Hindi',      label: 'Hindi (हिन्दी)' },
+  { value: 'Bengali',    label: 'Bengali (বাংলা)' },
+  { value: 'Tamil',      label: 'Tamil (தமிழ்)' },
+  { value: 'Telugu',     label: 'Telugu (తెలుగు)' },
+  { value: 'Marathi',    label: 'Marathi (मराठी)' },
+  { value: 'Gujarati',   label: 'Gujarati (ગુજરાતી)' },
+  { value: 'Kannada',    label: 'Kannada (ಕನ್ನಡ)' },
+  { value: 'Malayalam',  label: 'Malayalam (മലയാളം)' },
+  { value: 'Punjabi',    label: 'Punjabi (ਪੰਜਾਬੀ)' },
+  { value: 'Odia',       label: 'Odia (ଓଡ଼ିଆ)' },
+  { value: 'Urdu',       label: 'Urdu (اردو)' },
+  { value: 'Swahili',    label: 'Swahili' },
+  { value: 'Hausa',      label: 'Hausa' },
+  { value: 'Arabic',     label: 'Arabic (العربية)' },
+  { value: 'French',     label: 'French (Français)' },
+  { value: 'Portuguese', label: 'Portuguese (Português)' },
+  { value: 'Spanish',    label: 'Spanish (Español)' },
+];
 
-    if (langRes.ok) {
-      const languages = await langRes.json();
-      languages.forEach(lang => {
-        const opt = document.createElement('option');
-        opt.value = lang.value;
-        opt.textContent = lang.label;
-        langSelect.appendChild(opt);
-      });
-    }
+const REGIONS = [
+  { value: 'Rural Bihar, India',           label: 'Rural Bihar, India' },
+  { value: 'Rural Uttar Pradesh, India',   label: 'Rural Uttar Pradesh, India' },
+  { value: 'Rural Rajasthan, India',       label: 'Rural Rajasthan, India' },
+  { value: 'Rural West Bengal, India',     label: 'Rural West Bengal, India' },
+  { value: 'Rural Tamil Nadu, India',      label: 'Rural Tamil Nadu, India' },
+  { value: 'Rural Maharashtra, India',     label: 'Rural Maharashtra, India' },
+  { value: 'Rural Punjab, India',          label: 'Rural Punjab, India' },
+  { value: 'Rural Gujarat, India',         label: 'Rural Gujarat, India' },
+  { value: 'Sub-Saharan Africa (Kenya)',   label: 'Sub-Saharan Africa (Kenya)' },
+  { value: 'Sub-Saharan Africa (Nigeria)', label: 'Sub-Saharan Africa (Nigeria)' },
+  { value: 'Rural Bangladesh',            label: 'Rural Bangladesh' },
+  { value: 'Rural Pakistan',              label: 'Rural Pakistan' },
+  { value: 'Rural Nepal',                 label: 'Rural Nepal' },
+  { value: 'Rural Egypt',                 label: 'Rural Egypt' },
+  { value: 'Rural Brazil',                label: 'Rural Brazil' },
+  { value: 'Rural Mexico',                label: 'Rural Mexico' },
+];
 
-    if (regionRes.ok) {
-      const regions = await regionRes.json();
-      regions.forEach(region => {
-        const opt = document.createElement('option');
-        opt.value = region.value;
-        opt.textContent = region.label;
-        regionSelect.appendChild(opt);
-      });
-    }
-  } catch (err) {
-    console.warn('Could not reach backend for options. Ensure the server is running.', err);
-  }
+// ── Init: Populate dropdowns instantly from static data ──────
+function loadOptions() {
+  LANGUAGES.forEach(lang => {
+    const opt = document.createElement('option');
+    opt.value = lang.value;
+    opt.textContent = lang.label;
+    langSelect.appendChild(opt);
+  });
+
+  REGIONS.forEach(region => {
+    const opt = document.createElement('option');
+    opt.value = region.value;
+    opt.textContent = region.label;
+    regionSelect.appendChild(opt);
+  });
 }
 
 // ── Character Count ──────────────────────────────────────────
