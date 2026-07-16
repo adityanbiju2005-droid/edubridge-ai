@@ -2,7 +2,7 @@
 
 > A multi-agent AI pipeline that transforms textbook content into culturally localized lessons, quizzes, and teacher rubrics — for any language and region in the world.
 
-Built for **CSRBOX** · Powered by **LangGraph + Groq LLaMA 3.3 70B + FastAPI**
+Powered by **LangGraph + Groq LLaMA 3.3 70B + FastAPI**
 
 ---
 
