@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduBridge AI — Intelligent Educational Content Localization</title>
+  <meta name="description"
+    content="EduBridge AI transforms textbook content into culturally localized lessons, assessments, and rubrics for underserved communities worldwide using multi-agent AI." />
+  <meta name="keywords" content="EduBridge AI, educational localization, AI curriculum, multi-agent AI, LangGraph" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="EduBridge AI — Educational Content Localization" />
+  <meta property="og:description"
+    content="Multi-agent AI pipeline that localizes educational content for any language and region." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌉</text></svg>" />
+</head>
+
+<body>
+
+  <!-- Animated background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="app-wrapper">
+
+    <!-- ── Hero ── -->
+    <header class="hero">
+      <div class="hero-badge">
+        <span class="dot" aria-hidden="true"></span>
+        Powered by LangGraph + Groq LLaMA 3.3
+      </div>
+      <h1>EduBridge AI</h1>
+      <p>
+        A multi-agent AI pipeline that transforms any textbook excerpt into
+        culturally localized lessons, quizzes, and teacher rubrics — for any
+        language and region in the world.
+      </p>
+    </header>
+
+    <!-- ── Stats Strip ── -->
+    <div class="stats-strip" role="list" aria-label="Key statistics">
+      <div class="stat" role="listitem">
+        <div class="stat-value">4</div>
+        <div class="stat-label">AI Agents</div>
+      </div>
+      <div class="stat" role="listitem">
+        <div class="stat-value">17+</div>
+        <div class="stat-label">Languages</div>
+      </div>
+      <div class="stat" role="listitem">
+        <div class="stat-value">16+</div>
+        <div class="stat-label">Regions</div>
+      </div>
+      <div class="stat" role="listitem">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Output Types</div>
+      </div>
+    </div>
+
+    <!-- ── Main Grid ── -->
+    <main class="main-grid" id="main-content">
+
+      <!-- Input Card -->
+      <section class="glass-card" aria-labelledby="input-heading">
+        <h2 class="card-title" id="input-heading">
+          <span class="icon icon-blue" aria-hidden="true">📄</span>
+          Source Material
+        </h2>
+        <form id="input-form" novalidate>
+          <div class="form-group">
+            <label for="source-material">Paste Textbook Excerpt</label>
+            <textarea id="source-material" name="source-material"
+              placeholder="Paste any textbook paragraph, chapter excerpt, or educational content here…&#10;&#10;Example: Chapter 3: Financial Basics. John went to Wall Street in New York and bought 3 shares of tech stocks using USD…"
+              autocomplete="off" spellcheck="false" aria-required="true"></textarea>
+            <div class="char-count" id="char-count">0 characters</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="target-language">Target Language</label>
+              <div class="select-wrapper">
+                <select id="target-language" name="target-language" aria-required="true">
+                  <option value="" disabled selected>Select language…</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="target-region">Target Region</label>
+              <div class="select-wrapper">
+                <select id="target-region" name="target-region" aria-required="true">
+                  <option value="" disabled selected>Select region…</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-generate" id="generate-btn">
+            <span class="btn-icon" aria-hidden="true">✨</span>
+            Generate Content
+          </button>
+        </form>
+      </section>
+
+      <!-- Info Card -->
+      <section class="glass-card" aria-labelledby="how-heading">
+        <h2 class="card-title" id="how-heading">
+          <span class="icon icon-purple" aria-hidden="true">🤖</span>
+          How It Works
+        </h2>
+
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div style="display:flex; gap:14px; align-items:flex-start;">
+            <div
+              style="width:36px;height:36px;border-radius:50%;background:rgba(99,179,237,0.15);display:grid;place-items:center;font-size:1rem;flex-shrink:0">
+              🔀</div>
+            <div>
+              <div style="font-size:0.88rem;font-weight:600;color:var(--text-primary);margin-bottom:3px">Supervisor
+                Router</div>
+              <div style="font-size:0.82rem;color:var(--text-secondary)">Validates input and orchestrates the agent
+                pipeline flow with conditional routing.</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:14px; align-items:flex-start;">
+            <div
+              style="width:36px;height:36px;border-radius:50%;background:rgba(183,148,244,0.15);display:grid;place-items:center;font-size:1rem;flex-shrink:0">
+              📚</div>
+            <div>
+              <div style="font-size:0.88rem;font-weight:600;color:var(--text-primary);margin-bottom:3px">Pedagogical
+                Structurer</div>
+              <div style="font-size:0.82rem;color:var(--text-secondary)">Extracts core learning objectives, definitions,
+                and conceptual maps from raw text.</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:14px; align-items:flex-start;">
+            <div
+              style="width:36px;height:36px;border-radius:50%;background:rgba(118,228,247,0.15);display:grid;place-items:center;font-size:1rem;flex-shrink:0">
+              🌍</div>
+            <div>
+              <div style="font-size:0.88rem;font-weight:600;color:var(--text-primary);margin-bottom:3px">Localization
+                Agent</div>
+              <div style="font-size:0.82rem;color:var(--text-secondary)">Translates content and swaps names, idioms,
+                units, and references for the target culture.</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:14px; align-items:flex-start;">
+            <div
+              style="width:36px;height:36px;border-radius:50%;background:rgba(246,173,85,0.15);display:grid;place-items:center;font-size:1rem;flex-shrink:0">
+              📝</div>
+            <div>
+              <div style="font-size:0.88rem;font-weight:600;color:var(--text-primary);margin-bottom:3px">Quiz Generator
+              </div>
+              <div style="font-size:0.82rem;color:var(--text-secondary)">Creates student worksheets, teacher answer
+                keys, and detailed grading rubrics.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech Badges -->
+        <div
+          style="display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border)">
+          <span
+            style="background:rgba(99,179,237,0.1);border:1px solid rgba(99,179,237,0.2);border-radius:6px;padding:4px 10px;font-size:0.75rem;color:var(--accent-blue)">LangGraph</span>
+          <span
+            style="background:rgba(183,148,244,0.1);border:1px solid rgba(183,148,244,0.2);border-radius:6px;padding:4px 10px;font-size:0.75rem;color:var(--accent-purple)">Groq
+            LLaMA 3.3</span>
+          <span
+            style="background:rgba(118,228,247,0.1);border:1px solid rgba(118,228,247,0.2);border-radius:6px;padding:4px 10px;font-size:0.75rem;color:var(--accent-cyan)">FastAPI</span>
+          <span
+            style="background:rgba(104,211,145,0.1);border:1px solid rgba(104,211,145,0.2);border-radius:6px;padding:4px 10px;font-size:0.75rem;color:var(--accent-green)">Python
+            3.11+</span>
+          <span
+            style="background:rgba(246,173,85,0.1);border:1px solid rgba(246,173,85,0.2);border-radius:6px;padding:4px 10px;font-size:0.75rem;color:var(--accent-orange)">LangChain</span>
+        </div>
+      </section>
+
+      <!-- ── Pipeline Visualization ── -->
+      <section class="glass-card pipeline-card" aria-labelledby="pipeline-heading">
+        <h2 class="card-title" id="pipeline-heading">
+          <span class="icon icon-cyan" aria-hidden="true">⚡</span>
+          Agent Pipeline
+        </h2>
+
+        <div class="pipeline-stages" role="list" aria-label="Pipeline stages">
+
+          <div class="stage" id="stage-router" role="listitem">
+            <div class="stage-node" aria-hidden="true">🔀</div>
+            <div class="stage-label">Supervisor<br>Router</div>
+            <div class="stage-status">Idle</div>
+          </div>
+
+          <div class="stage" id="stage-structurer" role="listitem">
+            <div class="stage-node" aria-hidden="true">📚</div>
+            <div class="stage-label">Pedagogical<br>Structurer</div>
+            <div class="stage-status">Idle</div>
+          </div>
+
+          <div class="stage" id="stage-localizer" role="listitem">
+            <div class="stage-node" aria-hidden="true">🌍</div>
+            <div class="stage-label">Localization<br>Agent</div>
+            <div class="stage-status">Idle</div>
+          </div>
+
+          <div class="stage" id="stage-quiz" role="listitem">
+            <div class="stage-node" aria-hidden="true">📝</div>
+            <div class="stage-label">Quiz<br>Generator</div>
+            <div class="stage-status">Idle</div>
+          </div>
+
+        </div>
+
+        <div class="progress-bar-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+          aria-label="Pipeline progress">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <p class="status-msg" id="status-msg" aria-live="polite">
+          Ready — paste content and click Generate Content to begin.
+        </p>
+      </section>
+
+      <!-- ── Results Section ── -->
+      <section class="results-section glass-card" id="results-section" aria-labelledby="results-heading"
+        aria-live="polite">
+
+        <div class="results-header">
+          <h2 class="card-title" id="results-heading" style="margin-bottom:0">
+            <span class="icon icon-green" aria-hidden="true">✅</span>
+            Pipeline Results
+          </h2>
+          <div class="timing-badge" id="timing-badge" aria-label="Processing time"></div>
+        </div>
+
+        <!-- Tab Bar -->
+        <div class="tabs-bar" role="tablist" aria-label="Result tabs">
+          <button class="tab-btn active" id="tab-structured" data-tab="structured" role="tab" aria-selected="true"
+            aria-controls="panel-structured">
+            📚 Structured Lessons
+          </button>
+          <button class="tab-btn" id="tab-localized" data-tab="localized" role="tab" aria-selected="false"
+            aria-controls="panel-localized">
+            🌍 Localized Content
+          </button>
+          <button class="tab-btn" id="tab-rubric" data-tab="rubric" role="tab" aria-selected="false"
+            aria-controls="panel-rubric">
+            📝 Worksheets & Rubrics
+          </button>
+        </div>
+
+        <!-- Structured Lessons Panel -->
+        <div id="panel-structured" class="tab-panel active" role="tabpanel" aria-labelledby="tab-structured">
+          <pre class="result-content" id="result-structured" aria-label="Structured lessons output"></pre>
+        </div>
+
+        <!-- Localized Content Panel -->
+        <div id="panel-localized" class="tab-panel" role="tabpanel" aria-labelledby="tab-localized">
+          <pre class="result-content" id="result-localized" aria-label="Localized content output"></pre>
+        </div>
+
+        <!-- Worksheets & Rubrics Panel -->
+        <div id="panel-rubric" class="tab-panel" role="tabpanel" aria-labelledby="tab-rubric">
+          <pre class="result-content" id="result-rubric" aria-label="Worksheets and rubrics output"></pre>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="result-actions">
+          <button class="btn-action" id="btn-copy" aria-label="Copy active tab content to clipboard">
+            📋 Copy
+          </button>
+          <button class="btn-action" id="btn-download" aria-label="Download active tab content as text file">
+            ⬇️ Download
+          </button>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <p>EduBridge AI · LangGraph + Groq LLaMA 3.3 · FastAPI</p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
